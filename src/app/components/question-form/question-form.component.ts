@@ -1,4 +1,4 @@
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 interface IQuestion {
@@ -67,7 +67,9 @@ export class QuestionFormComponent implements OnInit {
     );
     this.addQuestForm.reset();
   }
-  public addVariant(): void {
-
+  public addMyAnswer(answerVal: string, index: number): void {
+    if (answerVal) {
+      (this.questForm.controls['questions']).controls[index].controls['answers'].push(new FormControl(answerVal));
+    }
   }
 }

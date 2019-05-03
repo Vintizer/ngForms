@@ -8,6 +8,8 @@
         <input type="radio" id="{{answer}}" value="{{answer}}" formControlName="answerVal">
         <label for="{{answer}}">{{answer}}</label>
       </div>
+      <input type="text" #addAnswer>
+      <button (click)="addMyAnswer(addAnswer.value, i)">Add my answer</button>
     </ng-container>
   </div>
   <button type="submit">Send</button>
