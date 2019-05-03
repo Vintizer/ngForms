@@ -1,0 +1,23 @@
+<h1>Questions form</h1>
+<form [formGroup]="questForm">
+  <div formArrayName="questions" *ngFor="let question of questForm.controls.questions?.value; let i = index">
+    <ng-container [formGroupName]="i">
+      {{ question.question }}
+
+      <div *ngFor="let answer of question.answers">
+        <input type="radio" id="{{answer}}" value="{{answer}}" formControlName="answerVal">
+        <label for="{{answer}}">{{answer}}</label>
+      </div>
+    </ng-container>
+  </div>
+  <button type="submit">Send</button>
+</form>
+
+<form [formGroup]="addQuestForm">
+  <label for="question">Question</label>
+  <input type="text" formControlName="question" />
+  <label for="answers">Answers (divide by comma)</label>
+  <input type="text" formControlName="answers" />
+  <button (click)="addQuestion()">Add my question</button>
+  <!-- <button (click)='addQuestion()' disabled='addQuestForm.invalid'>Add my question</button> -->
+</form>

@@ -1,0 +1,9 @@
+input.ng-touched.ng-invalid{
+    border-color: red
+}
+
+
+.error{
+    color: red;
+    background-color: blanchedalmond
+}

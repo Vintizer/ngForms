@@ -1,0 +1,105 @@
+<h1>Registration form</h1>
+<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+  <label for="name">First name*</label>
+  <input type="text" formControlName="name" />
+  <div *ngIf="isControlInvalid('name')">
+    <div>
+      <span class="error" *ngIf="getErrors('name')['pattern']">
+        Name can contains only latin symols and/or numbers.
+      </span>
+    </div>
+    <div>
+      <span class="error" *ngIf="getErrors('name')['required']">
+        Required field
+      </span>
+    </div>
+    <div>
+      <span class="error" *ngIf="getErrors('name')['minlength']">
+        Name should be more then 3 symbols.
+      </span>
+    </div>
+  </div>
+  <br /><br />
+
+  <label for="surname">Second name</label>
+  <input type="text" formControlName="surname" />
+  <br /><br />
+
+  <label for="email">email*</label>
+  <input type="text" formControlName="email" />
+  <div *ngIf="isControlInvalid('email')">
+    <div>
+      <span class="error" *ngIf="getErrors('email')['email']">
+        Email is not valid.
+      </span>
+    </div>
+    <div>
+      <span class="error" *ngIf="getErrors('email')['required']">
+        Required field
+      </span>
+    </div>
+  </div>
+  <br /><br />
+
+  <label for="password">Password*</label>
+  <input type="text" formControlName="password" />
+  <div *ngIf="isControlInvalid('password')">
+    <div>
+      <span class="error" *ngIf="getErrors('password')['invalidPassword']">
+        {{ getErrors("password")["invalidPassword"] }}
+      </span>
+    </div>
+    <div>
+      <span class="error" *ngIf="getErrors('password')['required']">
+        Required field
+      </span>
+    </div>
+  </div>
+  <br /><br />
+  <label for="passwordConf">Confirm password*</label>
+  <input type="text" formControlName="passwordConf" />
+  <div *ngIf="isControlInvalid('passwordConf')">
+    <div>
+      <span class="error">
+        Passwords mismatch.
+      </span>
+    </div>
+  </div>
+  <br /><br />
+
+  <div formGroupName="birthday">
+    Birthday
+    <select formControlName="day">
+      <option *ngFor="let day of days" [ngValue]="day">
+        {{ day }}
+      </option>
+    </select>
+    <select formControlName="month">
+      <option *ngFor="let month of monthes" [ngValue]="month">
+        {{ month }}
+      </option>
+    </select>
+    <select formControlName="year">
+      <option *ngFor="let year of years" [ngValue]="year">
+        {{ year }}
+      </option>
+    </select>
+  </div>
+  <br /><br />
+
+  <label for="gender">gender</label>
+  <input type="radio" value="male" formControlName="gender" />
+  <label for="male">Male</label>
+  <input type="radio" value="female" formControlName="gender" />
+  <label for="female">Female</label>
+  <div *ngIf="isControlInvalid('gender')">
+    <div>
+      <span class="error" *ngIf="getErrors('gender')['required']">
+        Required field
+      </span>
+    </div>
+  </div>
+  <br /><br />
+
+  <button type="submit">Send</button>
+</form>
