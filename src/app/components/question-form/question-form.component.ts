@@ -10,10 +10,6 @@ const initialQuestion: IQuestion[] = [
     question: 'What framework is the best?',
     answers: ['Angular', 'React', 'Vue']
   },
-  // {
-  //   question: 'What your favorite city?',
-  //   answers: ['Kharkiv', 'Odessa', 'Poltava']
-  // },
   {
     question: 'What car brand do you like?',
     answers: ['Renault', 'Toyota', 'BMW']

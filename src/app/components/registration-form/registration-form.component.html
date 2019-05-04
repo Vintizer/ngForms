@@ -52,10 +52,21 @@
 
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="">Password*</span>
+      <span class="input-group-text">Password*</span>
     </div>
-    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
-    <input type="password" class="form-control" formControlName="passwordConf" placeholder="Confirm password" />
+    <input type="password" class="form-control" #pass formControlName="password" placeholder="Password" />
+    <input
+      type="password"
+      class="form-control"
+      #passConf
+      formControlName="passwordConf"
+      placeholder="Confirm password"
+    />
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" (click)="togglePassword(pass, passConf)">
+        {{ isPasswordShows ? "Hide password" : "Show password" }}
+      </button>
+    </div>
   </div>
   <div *ngIf="isControlInvalid('password')">
     <div>
@@ -113,7 +124,6 @@
       </div>
     </div>
     <label for="male" class="form-control">Female</label>
-
   </div>
   <div *ngIf="isControlInvalid('gender')">
     <div>

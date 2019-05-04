@@ -32,6 +32,7 @@ export class RegistrationFormComponent implements OnInit {
   ];
   public days: number[] = createRangeArray(1, 31);
   public years: number[] = createRangeArray(1950, 2010);
+  public isPasswordShows: boolean = false;
 
   public constructor(private fb: FormBuilder) {}
 
@@ -65,22 +66,22 @@ export class RegistrationFormComponent implements OnInit {
         case this.monthes[1]:
           this.days = createRangeArray(1, 28);
           break;
-          case this.monthes[0]:
-          case this.monthes[2]:
-          case this.monthes[4]:
-          case this.monthes[6]:
-          case this.monthes[7]:
-          case this.monthes[9]:
-          case this.monthes[11]:
-        this.days = createRangeArray(1, 31);
+        case this.monthes[0]:
+        case this.monthes[2]:
+        case this.monthes[4]:
+        case this.monthes[6]:
+        case this.monthes[7]:
+        case this.monthes[9]:
+        case this.monthes[11]:
+          this.days = createRangeArray(1, 31);
           break;
-          case this.monthes[3]:
-          case this.monthes[5]:
-          case this.monthes[8]:
-          case this.monthes[10]:
-        this.days = createRangeArray(1, 30);
+        case this.monthes[3]:
+        case this.monthes[5]:
+        case this.monthes[8]:
+        case this.monthes[10]:
+          this.days = createRangeArray(1, 30);
           break;
-          default:
+        default:
           break;
       }
       const day: AbstractControl = (this.regForm.controls['birthday'] as FormGroup).controls['day'];
@@ -109,6 +110,11 @@ export class RegistrationFormComponent implements OnInit {
     }
     return true;
   }
+  public togglePassword(passwordControl: HTMLElement, passwordConfControl: HTMLElement): void {
+    this.isPasswordShows = !this.isPasswordShows;
+    passwordControl.setAttribute('type', this.isPasswordShows ? 'text' : 'password');
+    passwordConfControl.setAttribute('type', this.isPasswordShows ? 'text' : 'password');
+  }
   public onSubmit(): void {
     const controls: {
       [key: string]: AbstractControl;
@@ -118,7 +124,7 @@ export class RegistrationFormComponent implements OnInit {
       Object.keys(controls).forEach((controlName: string) => controls[controlName].markAsTouched());
       return;
     }
-    console.log(this.myFirstReactiveForm.value);
+    console.log(this.regForm.value);
   }
 
   private passwordValidator(control: FormControl): ValidationErrors {
