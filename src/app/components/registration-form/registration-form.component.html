@@ -1,7 +1,11 @@
-<h1>Registration form</h1>
+<h2>Registration form</h2>
 <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
-  <label for="name">First name*</label>
-  <input type="text" formControlName="name" />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">First name*</span>
+    </div>
+    <input type="text" class="form-control" formControlName="name" aria-describedby="basic-addon3" />
+  </div>
   <div *ngIf="isControlInvalid('name')">
     <div>
       <span class="error" *ngIf="getErrors('name')['pattern']">
@@ -19,14 +23,20 @@
       </span>
     </div>
   </div>
-  <br /><br />
 
-  <label for="surname">Second name</label>
-  <input type="text" formControlName="surname" />
-  <br /><br />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Second name</span>
+    </div>
+    <input type="text" class="form-control" formControlName="surname" aria-describedby="basic-addon3" />
+  </div>
 
-  <label for="email">email*</label>
-  <input type="text" formControlName="email" />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">email*</span>
+    </div>
+    <input type="text" class="form-control" formControlName="email" aria-describedby="basic-addon3" />
+  </div>
   <div *ngIf="isControlInvalid('email')">
     <div>
       <span class="error" *ngIf="getErrors('email')['email']">
@@ -39,10 +49,14 @@
       </span>
     </div>
   </div>
-  <br /><br />
 
-  <label for="password">Password*</label>
-  <input type="text" formControlName="password" />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">Password*</span>
+    </div>
+    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+    <input type="password" class="form-control" formControlName="passwordConf" placeholder="Confirm password" />
+  </div>
   <div *ngIf="isControlInvalid('password')">
     <div>
       <span class="error" *ngIf="getErrors('password')['invalidPassword']">
@@ -55,9 +69,6 @@
       </span>
     </div>
   </div>
-  <br /><br />
-  <label for="passwordConf">Confirm password*</label>
-  <input type="text" formControlName="passwordConf" />
   <div *ngIf="isControlInvalid('passwordConf')">
     <div>
       <span class="error">
@@ -65,33 +76,45 @@
       </span>
     </div>
   </div>
-  <br /><br />
-
-  <div formGroupName="birthday">
-    Birthday
-    <select formControlName="day">
+  <div class="input-group mb-3" formGroupName="birthday">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Birthday</label>
+    </div>
+    <select class="custom-select" formControlName="day">
       <option *ngFor="let day of days" [ngValue]="day">
         {{ day }}
       </option>
     </select>
-    <select formControlName="month">
+    <select class="custom-select" formControlName="month">
       <option *ngFor="let month of monthes" [ngValue]="month">
         {{ month }}
       </option>
     </select>
-    <select formControlName="year">
+    <select class="custom-select" formControlName="year">
       <option *ngFor="let year of years" [ngValue]="year">
         {{ year }}
       </option>
     </select>
   </div>
-  <br /><br />
 
-  <label for="gender">gender</label>
-  <input type="radio" value="male" formControlName="gender" />
-  <label for="male">Male</label>
-  <input type="radio" value="female" formControlName="gender" />
-  <label for="female">Female</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="">Gender</span>
+    </div>
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="radio" value="male" formControlName="gender" />
+      </div>
+    </div>
+    <label for="male" class="form-control">Male</label>
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input type="radio" value="female" formControlName="gender" />
+      </div>
+    </div>
+    <label for="male" class="form-control">Female</label>
+
+  </div>
   <div *ngIf="isControlInvalid('gender')">
     <div>
       <span class="error" *ngIf="getErrors('gender')['required']">
@@ -101,5 +124,5 @@
   </div>
   <br /><br />
 
-  <button type="submit">Send</button>
+  <button type="submit">Register</button>
 </form>

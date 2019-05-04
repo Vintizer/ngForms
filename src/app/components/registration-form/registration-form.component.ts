@@ -118,9 +118,7 @@ export class RegistrationFormComponent implements OnInit {
       Object.keys(controls).forEach((controlName: string) => controls[controlName].markAsTouched());
       return;
     }
-    console.log('HERE');
-    /** TODO: Обработка данных формы */
-    // console.log(this.myFirstReactiveForm.value);
+    console.log(this.myFirstReactiveForm.value);
   }
 
   private passwordValidator(control: FormControl): ValidationErrors {

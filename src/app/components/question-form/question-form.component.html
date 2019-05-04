@@ -1,4 +1,4 @@
-<h1>Questions form</h1>
+<h2>Questions form</h2>
 <form [formGroup]="questForm">
   <div formArrayName="questions" *ngFor="let question of questForm.controls.questions?.value; let i = index">
     <ng-container [formGroupName]="i">
@@ -14,12 +14,17 @@
   </div>
   <button type="submit">Send</button>
 </form>
-
+<br/>
+Add your own question
+<br/>
 <form [formGroup]="addQuestForm">
-  <label for="question">Question</label>
-  <input type="text" formControlName="question" />
-  <label for="answers">Answers (divide by comma)</label>
-  <input type="text" formControlName="answers" />
-  <button (click)="addQuestion()">Add my question</button>
-  <!-- <button (click)='addQuestion()' disabled='addQuestForm.invalid'>Add my question</button> -->
+  <div class="row">
+    <label for="question">Question</label>
+    <input type="text" formControlName="question" />
+  </div>
+  <div class="row">
+    <label for="answers">Answers (divide by comma)</label>
+    <input type="text" formControlName="answers" />
+  </div>
+  <button (click)='addQuestion()' [disabled]='addQuestForm.invalid'>Add my question</button>
 </form>

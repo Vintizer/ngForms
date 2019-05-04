@@ -10,10 +10,10 @@ const initialQuestion: IQuestion[] = [
     question: 'What framework is the best?',
     answers: ['Angular', 'React', 'Vue']
   },
-  {
-    question: 'What your favorite city?',
-    answers: ['Kharkiv', 'Odessa', 'Poltava']
-  },
+  // {
+  //   question: 'What your favorite city?',
+  //   answers: ['Kharkiv', 'Odessa', 'Poltava']
+  // },
   {
     question: 'What car brand do you like?',
     answers: ['Renault', 'Toyota', 'BMW']
@@ -69,7 +69,8 @@ export class QuestionFormComponent implements OnInit {
   }
   public addMyAnswer(answerVal: string, index: number): void {
     if (answerVal) {
-      (this.questForm.controls['questions']).controls[index].controls['answers'].push(new FormControl(answerVal));
+      ((this.questForm.controls['questions'] as FormArray)
+      .controls[index] as FormArray).controls['answers'].push(new FormControl(answerVal));
     }
   }
 }
